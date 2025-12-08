@@ -1,0 +1,536 @@
+[2025-12-01 10:09:25] Log file: /benchmark_results/pd-only-gds/20251201-100925-bench.log
+[2025-12-01 10:09:25] ==========================================
+[2025-12-01 10:09:25] PD Benchmark Configuration
+[2025-12-01 10:09:25] ==========================================
+[2025-12-01 10:09:25] Model: /models/Qwen3-30B-A3B-Instruct-2507-FP8
+[2025-12-01 10:09:25] Served Model Name: Qwen3-30B-A3B-Instruct-2507-FP8
+[2025-12-01 10:09:25] Base URL: http://localhost:30805
+[2025-12-01 10:09:25] Output Directory: /benchmark_results/pd-only-gds
+[2025-12-01 10:09:25] Case Name: pd-only-gds
+[2025-12-01 10:09:25] ------------------------------------------
+[2025-12-01 10:09:25] Test Type: separate
+[2025-12-01 10:09:25] Test Parameters:
+[2025-12-01 10:09:25]   Number of Prompts: 160
+[2025-12-01 10:09:25]   Request Rate: 128
+[2025-12-01 10:09:25]   Decode Output Length: 10
+[2025-12-01 10:09:25]   Input Lengths: 100 1000 10000 20000 50000
+[2025-12-01 10:09:25]   Base Seed: 45
+[2025-12-01 10:09:25] ------------------------------------------
+[2025-12-01 10:09:25] Warmup: true
+[2025-12-01 10:09:25]   Warmup Prompts: 5
+[2025-12-01 10:09:25]   Warmup Input Length: 100
+[2025-12-01 10:09:25]   Warmup Seed: 2
+[2025-12-01 10:09:25] ==========================================
+[2025-12-01 10:09:25] ==========================================
+[2025-12-01 10:09:25] Running warmup...
+[2025-12-01 10:09:25] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:09:28 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fcaffd00220>, seed=2, num_prompts=5, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=100, random_output_len=1, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=1, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=inf, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=['type=warmup'], result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:09:33 [datasets.py:507] Sampling input_len from [100, 100] and output_len from [1, 1]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:08 remaining |          | 00:00 elapsed, 92:51:05 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 1
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:00<00:01,  3.16it/s] 40%|████      | 2/5 [00:00<00:00,  4.55it/s] 60%|██████    | 3/5 [00:00<00:00,  5.11it/s] 80%|████████  | 4/5 [00:00<00:00,  5.74it/s]100%|██████████| 5/5 [00:00<00:00,  6.55it/s]100%|██████████| 5/5 [00:00<00:00,  5.61it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     5         
+Maximum request concurrency:             1         
+Benchmark duration (s):                  0.89      
+Total input tokens:                      500       
+Total generated tokens:                  5         
+Request throughput (req/s):              5.61      
+Output token throughput (tok/s):         5.61      
+Peak output token throughput (tok/s):    5.00      
+Peak concurrent requests:                5.00      
+Total Token throughput (tok/s):          566.41    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          177.82    
+Median TTFT (ms):                        151.22    
+P99 TTFT (ms):                           310.16    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+[2025-12-01 10:09:35] Warmup completed
+[2025-12-01 10:09:36] ==========================================
+[2025-12-01 10:09:36] Starting PD Separate Tests
+[2025-12-01 10:09:36] ==========================================
+[2025-12-01 10:09:36] ------------------------------------------
+[2025-12-01 10:09:36] Testing with input_len=100, seed=145
+[2025-12-01 10:09:36] ------------------------------------------
+[2025-12-01 10:09:36] ==========================================
+[2025-12-01 10:09:36] Running Prefill-Only Test
+[2025-12-01 10:09:36] Input Length: 100, Seed: 145
+[2025-12-01 10:09:36] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:09:39 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fe3f1448360>, seed=145, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=100, random_output_len=1, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=prefill-only,input_len=100'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:09:44 [datasets.py:507] Sampling input_len from [100, 100] and output_len from [1, 1]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:07 remaining |          | 00:00 elapsed, 59:50:30 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<00:22,  6.91it/s]  3%|▎         | 5/160 [00:00<00:06, 22.32it/s]  8%|▊         | 13/160 [00:00<00:03, 44.17it/s] 15%|█▌        | 24/160 [00:00<00:02, 61.18it/s] 28%|██▊       | 44/160 [00:00<00:01, 99.35it/s] 38%|███▊      | 60/160 [00:00<00:00, 111.50it/s] 46%|████▌     | 73/160 [00:00<00:00, 116.09it/s] 57%|█████▋    | 91/160 [00:00<00:00, 131.16it/s] 66%|██████▌   | 105/160 [00:01<00:00, 131.39it/s] 74%|███████▍  | 119/160 [00:01<00:00, 105.86it/s] 82%|████████▏ | 131/160 [00:01<00:00, 94.17it/s]  89%|████████▉ | 142/160 [00:02<00:00, 29.82it/s] 96%|█████████▌| 153/160 [00:02<00:00, 36.10it/s]100%|██████████| 160/160 [00:03<00:00, 51.83it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  3.09      
+Total input tokens:                      15907     
+Total generated tokens:                  160       
+Request throughput (req/s):              51.82     
+Output token throughput (tok/s):         51.82     
+Peak output token throughput (tok/s):    98.00     
+Peak concurrent requests:                136.00    
+Total Token throughput (tok/s):          5204.18   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          491.14    
+Median TTFT (ms):                        102.79    
+P99 TTFT (ms):                           2323.17   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+[2025-12-01 10:09:48] Prefill-Only test completed for input_len=100
+[2025-12-01 10:09:50] ==========================================
+[2025-12-01 10:09:50] Running Decode-Only Test
+[2025-12-01 10:09:50] Input Length: 100, Seed: 145
+[2025-12-01 10:09:50] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:09:53 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fbcc4288220>, seed=145, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=100, random_output_len=10, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=decode-only,input_len=100,output_len=10'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:09:58 [datasets.py:507] Sampling input_len from [100, 100] and output_len from [10, 10]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:08 remaining |          | 00:00 elapsed, 27:13:36 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<00:22,  7.04it/s]  1%|▏         | 2/160 [00:00<00:21,  7.43it/s]  4%|▍         | 6/160 [00:00<00:07, 19.69it/s]  7%|▋         | 11/160 [00:00<00:04, 29.94it/s] 27%|██▋       | 43/160 [00:00<00:00, 125.71it/s] 45%|████▌     | 72/160 [00:00<00:00, 178.10it/s] 57%|█████▋    | 91/160 [00:00<00:00, 179.11it/s] 69%|██████▉   | 110/160 [00:00<00:00, 143.21it/s] 79%|███████▉  | 126/160 [00:01<00:00, 144.49it/s] 89%|████████▉ | 142/160 [00:01<00:00, 139.22it/s] 98%|█████████▊| 157/160 [00:01<00:00, 115.33it/s]100%|██████████| 160/160 [00:01<00:00, 109.66it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  1.46      
+Total input tokens:                      15907     
+Total generated tokens:                  1600      
+Request throughput (req/s):              109.64    
+Output token throughput (tok/s):         1096.41   
+Peak output token throughput (tok/s):    1212.00   
+Peak concurrent requests:                136.00    
+Total Token throughput (tok/s):          11996.74  
+---------------Time to First Token----------------
+Mean TTFT (ms):                          90.11     
+Median TTFT (ms):                        45.28     
+P99 TTFT (ms):                           364.31    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          13.64     
+Median TPOT (ms):                        11.93     
+P99 TPOT (ms):                           39.88     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           13.64     
+Median ITL (ms):                         11.18     
+P99 ITL (ms):                            91.44     
+==================================================
+[2025-12-01 10:10:01] Decode-Only test completed for input_len=100
+[2025-12-01 10:10:03] Completed separate tests for input_len=100
+[2025-12-01 10:10:03] 
+[2025-12-01 10:10:03] ------------------------------------------
+[2025-12-01 10:10:03] Testing with input_len=1000, seed=1045
+[2025-12-01 10:10:03] ------------------------------------------
+[2025-12-01 10:10:03] ==========================================
+[2025-12-01 10:10:03] Running Prefill-Only Test
+[2025-12-01 10:10:03] Input Length: 1000, Seed: 1045
+[2025-12-01 10:10:03] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:10:06 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fb5132ec220>, seed=1045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=1000, random_output_len=1, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=prefill-only,input_len=1000'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:10:11 [datasets.py:507] Sampling input_len from [1000, 1000] and output_len from [1, 1]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:07 remaining |          | 00:00 elapsed, 27:52:49 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|▏         | 2/160 [00:00<00:17,  8.99it/s]  6%|▋         | 10/160 [00:00<00:04, 33.86it/s] 11%|█         | 17/160 [00:00<00:03, 45.90it/s] 19%|█▉        | 31/160 [00:00<00:01, 68.63it/s] 27%|██▋       | 43/160 [00:00<00:01, 82.31it/s] 41%|████      | 65/160 [00:00<00:00, 121.28it/s] 52%|█████▏    | 83/160 [00:00<00:00, 129.27it/s] 61%|██████    | 97/160 [00:01<00:00, 120.05it/s] 69%|██████▉   | 110/160 [00:01<00:00, 109.86it/s] 77%|███████▋  | 123/160 [00:01<00:00, 113.47it/s] 88%|████████▊ | 140/160 [00:01<00:00, 116.42it/s] 95%|█████████▌| 152/160 [00:02<00:00, 31.82it/s] 100%|██████████| 160/160 [00:03<00:00, 51.04it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  3.14      
+Total input tokens:                      159690    
+Total generated tokens:                  160       
+Request throughput (req/s):              51.03     
+Output token throughput (tok/s):         51.03     
+Peak output token throughput (tok/s):    92.00     
+Peak concurrent requests:                125.00    
+Total Token throughput (tok/s):          50984.33  
+---------------Time to First Token----------------
+Mean TTFT (ms):                          406.54    
+Median TTFT (ms):                        251.78    
+P99 TTFT (ms):                           2182.49   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+[2025-12-01 10:10:16] Prefill-Only test completed for input_len=1000
+[2025-12-01 10:10:18] ==========================================
+[2025-12-01 10:10:18] Running Decode-Only Test
+[2025-12-01 10:10:18] Input Length: 1000, Seed: 1045
+[2025-12-01 10:10:18] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:10:21 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f00e3cac220>, seed=1045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=1000, random_output_len=10, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=decode-only,input_len=1000,output_len=10'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:10:26 [datasets.py:507] Sampling input_len from [1000, 1000] and output_len from [10, 10]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:08 remaining |          | 00:00 elapsed, 108:27:13 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<00:33,  4.73it/s]  1%|▏         | 2/160 [00:00<00:33,  4.68it/s]  9%|▉         | 14/160 [00:00<00:03, 37.07it/s] 24%|██▍       | 39/160 [00:00<00:01, 96.43it/s] 33%|███▎      | 53/160 [00:00<00:00, 107.95it/s] 48%|████▊     | 77/160 [00:00<00:00, 139.57it/s] 58%|█████▊    | 93/160 [00:00<00:00, 138.90it/s] 68%|██████▊   | 109/160 [00:01<00:00, 122.67it/s] 77%|███████▋  | 123/160 [00:01<00:00, 119.68it/s] 91%|█████████ | 145/160 [00:01<00:00, 145.04it/s]100%|██████████| 160/160 [00:01<00:00, 84.85it/s] 
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  1.89      
+Total input tokens:                      159690    
+Total generated tokens:                  1599      
+Request throughput (req/s):              84.84     
+Output token throughput (tok/s):         847.86    
+Peak output token throughput (tok/s):    1023.00   
+Peak concurrent requests:                125.00    
+Total Token throughput (tok/s):          85522.64  
+---------------Time to First Token----------------
+Mean TTFT (ms):                          201.07    
+Median TTFT (ms):                        92.46     
+P99 TTFT (ms):                           775.48    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          12.80     
+Median TPOT (ms):                        11.86     
+P99 TPOT (ms):                           23.11     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           12.80     
+Median ITL (ms):                         11.18     
+P99 ITL (ms):                            39.95     
+==================================================
+[2025-12-01 10:10:30] Decode-Only test completed for input_len=1000
+[2025-12-01 10:10:32] Completed separate tests for input_len=1000
+[2025-12-01 10:10:32] 
+[2025-12-01 10:10:32] ------------------------------------------
+[2025-12-01 10:10:32] Testing with input_len=10000, seed=10045
+[2025-12-01 10:10:32] ------------------------------------------
+[2025-12-01 10:10:32] ==========================================
+[2025-12-01 10:10:32] Running Prefill-Only Test
+[2025-12-01 10:10:32] Input Length: 10000, Seed: 10045
+[2025-12-01 10:10:32] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:10:36 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f319580c220>, seed=10045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=10000, random_output_len=1, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=prefill-only,input_len=10000'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:10:40 [datasets.py:507] Sampling input_len from [10000, 10000] and output_len from [1, 1]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:07 remaining |          | 00:01 elapsed, 218:49:03 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<00:34,  4.55it/s]  1%|▏         | 2/160 [00:00<01:06,  2.38it/s]  2%|▎         | 4/160 [00:00<00:32,  4.83it/s]  3%|▎         | 5/160 [00:01<00:28,  5.35it/s]  4%|▍         | 6/160 [00:01<00:29,  5.14it/s]  8%|▊         | 12/160 [00:01<00:10, 14.17it/s]  9%|▉         | 14/160 [00:01<00:10, 13.74it/s] 10%|█         | 16/160 [00:01<00:10, 13.93it/s] 13%|█▎        | 21/160 [00:01<00:07, 19.35it/s] 15%|█▌        | 24/160 [00:02<00:08, 16.21it/s] 16%|█▋        | 26/160 [00:02<00:08, 16.00it/s] 19%|█▉        | 30/160 [00:02<00:06, 20.62it/s] 21%|██        | 33/160 [00:02<00:05, 22.46it/s] 22%|██▎       | 36/160 [00:02<00:07, 17.12it/s] 24%|██▍       | 39/160 [00:02<00:06, 19.42it/s] 26%|██▋       | 42/160 [00:03<00:05, 19.85it/s] 28%|██▊       | 45/160 [00:03<00:06, 18.01it/s] 33%|███▎      | 53/160 [00:03<00:03, 29.55it/s] 36%|███▌      | 57/160 [00:03<00:03, 30.84it/s] 38%|███▊      | 61/160 [00:03<00:04, 23.65it/s] 40%|████      | 64/160 [00:03<00:04, 20.20it/s] 42%|████▏     | 67/160 [00:04<00:05, 17.10it/s] 44%|████▍     | 70/160 [00:04<00:04, 18.41it/s] 46%|████▋     | 74/160 [00:04<00:04, 20.10it/s] 48%|████▊     | 77/160 [00:04<00:03, 20.93it/s] 50%|█████     | 80/160 [00:04<00:03, 20.35it/s] 52%|█████▎    | 84/160 [00:04<00:03, 23.74it/s] 54%|█████▍    | 87/160 [00:05<00:03, 21.54it/s] 56%|█████▋    | 90/160 [00:05<00:03, 21.00it/s] 59%|█████▉    | 95/160 [00:05<00:02, 25.18it/s] 61%|██████▏   | 98/160 [00:05<00:02, 23.96it/s] 63%|██████▎   | 101/160 [00:05<00:02, 24.15it/s] 65%|██████▌   | 104/160 [00:05<00:02, 23.79it/s] 67%|██████▋   | 107/160 [00:05<00:02, 21.70it/s] 69%|██████▉   | 110/160 [00:06<00:02, 19.95it/s] 71%|███████   | 113/160 [00:06<00:02, 18.75it/s] 72%|███████▏  | 115/160 [00:06<00:02, 17.17it/s] 75%|███████▌  | 120/160 [00:06<00:01, 20.79it/s] 77%|███████▋  | 123/160 [00:06<00:02, 16.89it/s] 79%|███████▉  | 127/160 [00:06<00:01, 20.44it/s] 81%|████████▏ | 130/160 [00:07<00:02, 14.26it/s] 82%|████████▎ | 132/160 [00:07<00:02, 10.57it/s] 85%|████████▌ | 136/160 [00:07<00:01, 12.55it/s] 86%|████████▋ | 138/160 [00:08<00:01, 11.36it/s] 88%|████████▊ | 141/160 [00:08<00:01, 11.50it/s] 89%|████████▉ | 143/160 [00:08<00:01, 11.46it/s] 91%|█████████ | 145/160 [00:08<00:01, 11.87it/s] 92%|█████████▏| 147/160 [00:09<00:01,  8.79it/s] 93%|█████████▎| 149/160 [00:09<00:02,  5.48it/s] 94%|█████████▍| 150/160 [00:10<00:02,  4.79it/s] 94%|█████████▍| 151/160 [00:10<00:01,  5.29it/s] 96%|█████████▌| 153/160 [00:10<00:01,  4.95it/s] 97%|█████████▋| 155/160 [00:11<00:01,  4.67it/s] 98%|█████████▊| 156/160 [00:11<00:01,  3.80it/s] 98%|█████████▊| 157/160 [00:12<00:01,  2.54it/s] 99%|█████████▉| 158/160 [00:13<00:00,  2.44it/s] 99%|█████████▉| 159/160 [00:13<00:00,  2.92it/s]100%|██████████| 160/160 [00:13<00:00,  3.50it/s]100%|██████████| 160/160 [00:13<00:00, 11.97it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  13.37     
+Total input tokens:                      1599978   
+Total generated tokens:                  160       
+Request throughput (req/s):              11.97     
+Output token throughput (tok/s):         11.97     
+Peak output token throughput (tok/s):    25.00     
+Peak concurrent requests:                156.00    
+Total Token throughput (tok/s):          119714.79 
+---------------Time to First Token----------------
+Mean TTFT (ms):                          4450.11   
+Median TTFT (ms):                        4029.40   
+P99 TTFT (ms):                           12007.13  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+[2025-12-01 10:11:04] Prefill-Only test completed for input_len=10000
+[2025-12-01 10:11:06] ==========================================
+[2025-12-01 10:11:06] Running Decode-Only Test
+[2025-12-01 10:11:06] Input Length: 10000, Seed: 10045
+[2025-12-01 10:11:06] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:11:09 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f197c37c220>, seed=10045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=10000, random_output_len=10, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=decode-only,input_len=10000,output_len=10'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:11:14 [datasets.py:507] Sampling input_len from [10000, 10000] and output_len from [10, 10]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:07 remaining |          | 00:00 elapsed, 118:49:30 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<01:19,  2.01it/s]  1%|▏         | 2/160 [00:00<01:02,  2.53it/s]  8%|▊         | 12/160 [00:00<00:08, 17.46it/s] 12%|█▏        | 19/160 [00:01<00:05, 24.92it/s] 19%|█▉        | 30/160 [00:01<00:03, 40.91it/s] 23%|██▎       | 37/160 [00:01<00:02, 45.29it/s] 34%|███▍      | 54/160 [00:01<00:01, 73.35it/s] 48%|████▊     | 76/160 [00:01<00:00, 102.99it/s] 56%|█████▌    | 89/160 [00:01<00:00, 90.98it/s]  62%|██████▎   | 100/160 [00:01<00:00, 91.31it/s] 71%|███████▏  | 114/160 [00:02<00:00, 94.14it/s] 78%|███████▊  | 125/160 [00:02<00:00, 82.84it/s] 88%|████████▊ | 140/160 [00:02<00:00, 96.74it/s] 94%|█████████▍| 151/160 [00:02<00:00, 92.81it/s]100%|██████████| 160/160 [00:02<00:00, 61.06it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  2.62      
+Total input tokens:                      1599978   
+Total generated tokens:                  1592      
+Request throughput (req/s):              61.06     
+Output token throughput (tok/s):         607.50    
+Peak output token throughput (tok/s):    959.00    
+Peak concurrent requests:                148.00    
+Total Token throughput (tok/s):          611151.41 
+---------------Time to First Token----------------
+Mean TTFT (ms):                          735.49    
+Median TTFT (ms):                        650.35    
+P99 TTFT (ms):                           1961.66   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          37.72     
+Median TPOT (ms):                        28.24     
+P99 TPOT (ms):                           107.21    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           37.80     
+Median ITL (ms):                         17.06     
+P99 ITL (ms):                            313.96    
+==================================================
+[2025-12-01 10:11:25] Decode-Only test completed for input_len=10000
+[2025-12-01 10:11:27] Completed separate tests for input_len=10000
+[2025-12-01 10:11:27] 
+[2025-12-01 10:11:27] ------------------------------------------
+[2025-12-01 10:11:27] Testing with input_len=20000, seed=20045
+[2025-12-01 10:11:27] ------------------------------------------
+[2025-12-01 10:11:27] ==========================================
+[2025-12-01 10:11:27] Running Prefill-Only Test
+[2025-12-01 10:11:27] Input Length: 20000, Seed: 20045
+[2025-12-01 10:11:27] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:11:31 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f8ce0bf4220>, seed=20045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=20000, random_output_len=1, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=prefill-only,input_len=20000'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:11:35 [datasets.py:507] Sampling input_len from [20000, 20000] and output_len from [1, 1]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:07 remaining |          | 00:03 elapsed, 509:51:45 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<01:46,  1.49it/s]  1%|▏         | 2/160 [00:02<03:00,  1.14s/it]  3%|▎         | 5/160 [00:02<01:13,  2.10it/s]  7%|▋         | 11/160 [00:03<00:27,  5.44it/s]  9%|▉         | 14/160 [00:03<00:20,  7.29it/s] 10%|█         | 16/160 [00:03<00:18,  7.93it/s] 11%|█▏        | 18/160 [00:03<00:25,  5.64it/s] 12%|█▎        | 20/160 [00:04<00:27,  5.08it/s] 15%|█▌        | 24/160 [00:04<00:17,  7.57it/s] 17%|█▋        | 27/160 [00:04<00:13,  9.85it/s] 18%|█▊        | 29/160 [00:04<00:12, 10.67it/s] 20%|██        | 32/160 [00:06<00:24,  5.20it/s] 21%|██▏       | 34/160 [00:06<00:24,  5.15it/s] 23%|██▎       | 37/160 [00:06<00:18,  6.59it/s] 25%|██▌       | 40/160 [00:06<00:14,  8.53it/s] 27%|██▋       | 43/160 [00:07<00:12,  9.20it/s] 29%|██▉       | 46/160 [00:08<00:20,  5.59it/s] 31%|███       | 49/160 [00:08<00:16,  6.84it/s] 32%|███▎      | 52/160 [00:08<00:12,  8.68it/s] 34%|███▍      | 54/160 [00:08<00:13,  7.96it/s] 35%|███▌      | 56/160 [00:09<00:16,  6.44it/s] 37%|███▋      | 59/160 [00:09<00:15,  6.33it/s] 38%|███▊      | 60/160 [00:09<00:15,  6.39it/s] 38%|███▊      | 61/160 [00:10<00:16,  5.83it/s] 40%|████      | 64/160 [00:10<00:13,  7.36it/s] 42%|████▎     | 68/160 [00:10<00:08, 11.30it/s] 44%|████▍     | 70/160 [00:10<00:07, 12.49it/s] 45%|████▌     | 72/160 [00:10<00:07, 11.75it/s] 46%|████▋     | 74/160 [00:11<00:14,  5.91it/s] 48%|████▊     | 76/160 [00:11<00:12,  6.77it/s] 49%|████▉     | 78/160 [00:11<00:10,  8.02it/s] 51%|█████     | 81/160 [00:12<00:07, 10.88it/s] 52%|█████▏    | 83/160 [00:12<00:07, 10.03it/s] 53%|█████▎    | 85/160 [00:12<00:06, 10.94it/s] 55%|█████▌    | 88/160 [00:12<00:08,  8.58it/s] 56%|█████▋    | 90/160 [00:13<00:14,  4.91it/s] 59%|█████▉    | 95/160 [00:14<00:08,  7.64it/s] 61%|██████    | 97/160 [00:14<00:07,  8.61it/s] 62%|██████▏   | 99/160 [00:14<00:10,  5.91it/s] 64%|██████▍   | 102/160 [00:15<00:09,  6.00it/s] 66%|██████▌   | 105/160 [00:15<00:06,  8.08it/s] 67%|██████▋   | 107/160 [00:15<00:06,  8.19it/s] 68%|██████▊   | 109/160 [00:16<00:06,  7.77it/s] 69%|██████▉   | 111/160 [00:16<00:06,  8.01it/s] 71%|███████   | 113/160 [00:16<00:05,  7.95it/s] 71%|███████▏  | 114/160 [00:17<00:09,  4.92it/s] 73%|███████▎  | 117/160 [00:17<00:06,  6.48it/s] 74%|███████▍  | 119/160 [00:17<00:05,  7.87it/s] 76%|███████▌  | 121/160 [00:17<00:05,  7.04it/s] 78%|███████▊  | 124/160 [00:18<00:04,  7.59it/s] 78%|███████▊  | 125/160 [00:18<00:04,  7.07it/s] 79%|███████▉  | 126/160 [00:18<00:04,  7.22it/s] 79%|███████▉  | 127/160 [00:19<00:07,  4.14it/s] 81%|████████  | 129/160 [00:19<00:06,  5.08it/s] 82%|████████▏ | 131/160 [00:19<00:05,  5.06it/s] 82%|████████▎ | 132/160 [00:19<00:05,  5.25it/s] 83%|████████▎ | 133/160 [00:20<00:08,  3.07it/s] 84%|████████▍ | 135/160 [00:21<00:06,  3.97it/s] 86%|████████▋ | 138/160 [00:21<00:04,  4.57it/s] 88%|████████▊ | 140/160 [00:21<00:03,  5.55it/s] 88%|████████▊ | 141/160 [00:22<00:04,  4.60it/s] 89%|████████▉ | 142/160 [00:22<00:03,  4.75it/s] 89%|████████▉ | 143/160 [00:22<00:05,  3.37it/s] 90%|█████████ | 144/160 [00:23<00:04,  3.85it/s] 91%|█████████ | 145/160 [00:23<00:03,  3.92it/s] 92%|█████████▎| 148/160 [00:24<00:03,  3.08it/s] 94%|█████████▍| 150/160 [00:24<00:02,  4.15it/s] 94%|█████████▍| 151/160 [00:25<00:03,  2.69it/s] 95%|█████████▌| 152/160 [00:26<00:03,  2.47it/s] 96%|█████████▌| 153/160 [00:26<00:02,  2.69it/s] 96%|█████████▋| 154/160 [00:27<00:02,  2.11it/s] 97%|█████████▋| 155/160 [00:28<00:03,  1.56it/s] 98%|█████████▊| 157/160 [00:29<00:02,  1.40it/s] 99%|█████████▉| 158/160 [00:30<00:01,  1.21it/s] 99%|█████████▉| 159/160 [00:32<00:01,  1.03s/it]100%|██████████| 160/160 [00:33<00:00,  1.03s/it]100%|██████████| 160/160 [00:33<00:00,  4.75it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  33.68     
+Total input tokens:                      3200000   
+Total generated tokens:                  160       
+Request throughput (req/s):              4.75      
+Output token throughput (tok/s):         4.75      
+Peak output token throughput (tok/s):    13.00     
+Peak concurrent requests:                159.00    
+Total Token throughput (tok/s):          95014.58  
+---------------Time to First Token----------------
+Mean TTFT (ms):                          12318.62  
+Median TTFT (ms):                        11476.25  
+P99 TTFT (ms):                           30623.52  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+[2025-12-01 10:12:29] Prefill-Only test completed for input_len=20000
+[2025-12-01 10:12:31] ==========================================
+[2025-12-01 10:12:31] Running Decode-Only Test
+[2025-12-01 10:12:31] Input Length: 20000, Seed: 20045
+[2025-12-01 10:12:31] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:12:34 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fac448f8360>, seed=20045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=20000, random_output_len=10, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=decode-only,input_len=20000,output_len=10'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:12:39 [datasets.py:507] Sampling input_len from [20000, 20000] and output_len from [10, 10]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:08 remaining |          | 00:02 elapsed, 582:40:27 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:00<01:31,  1.74it/s]  1%|▏         | 2/160 [00:00<00:57,  2.76it/s]  2%|▎         | 4/160 [00:01<00:37,  4.13it/s]  3%|▎         | 5/160 [00:01<00:35,  4.35it/s]  4%|▍         | 6/160 [00:01<00:32,  4.67it/s]  6%|▌         | 9/160 [00:01<00:20,  7.52it/s] 10%|█         | 16/160 [00:01<00:09, 15.47it/s] 22%|██▏       | 35/160 [00:02<00:03, 34.63it/s] 28%|██▊       | 44/160 [00:02<00:02, 41.96it/s] 34%|███▍      | 54/160 [00:02<00:02, 46.00it/s] 42%|████▏     | 67/160 [00:02<00:01, 60.92it/s] 47%|████▋     | 75/160 [00:02<00:01, 52.20it/s] 51%|█████▏    | 82/160 [00:03<00:01, 43.95it/s] 61%|██████    | 97/160 [00:03<00:01, 62.69it/s] 71%|███████▏  | 114/160 [00:03<00:00, 82.93it/s] 82%|████████▏ | 131/160 [00:03<00:00, 69.73it/s] 88%|████████▊ | 140/160 [00:03<00:00, 72.34it/s]100%|██████████| 160/160 [00:03<00:00, 43.04it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  3.72      
+Total input tokens:                      3200000   
+Total generated tokens:                  1587      
+Request throughput (req/s):              43.04     
+Output token throughput (tok/s):         426.89    
+Peak output token throughput (tok/s):    639.00    
+Peak concurrent requests:                157.00    
+Total Token throughput (tok/s):          861192.85 
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1419.55   
+Median TTFT (ms):                        1284.97   
+P99 TTFT (ms):                           3093.22   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          84.55     
+Median TPOT (ms):                        70.65     
+P99 TPOT (ms):                           271.13    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           84.03     
+Median ITL (ms):                         26.56     
+P99 ITL (ms):                            995.59    
+==================================================
+[2025-12-01 10:12:57] Decode-Only test completed for input_len=20000
+[2025-12-01 10:12:59] Completed separate tests for input_len=20000
+[2025-12-01 10:12:59] 
+[2025-12-01 10:12:59] ------------------------------------------
+[2025-12-01 10:12:59] Testing with input_len=50000, seed=50045
+[2025-12-01 10:12:59] ------------------------------------------
+[2025-12-01 10:12:59] ==========================================
+[2025-12-01 10:12:59] Running Prefill-Only Test
+[2025-12-01 10:12:59] Input Length: 50000, Seed: 50045
+[2025-12-01 10:12:59] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:13:02 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fa6b3a9c220>, seed=50045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=50000, random_output_len=1, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=prefill-only,input_len=50000'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:13:05 [datasets.py:507] Sampling input_len from [50000, 50000] and output_len from [1, 1]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:09 remaining |          | 00:06 elapsed, 1365:15:14 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:02<05:28,  2.07s/it]  1%|▏         | 2/160 [00:06<09:06,  3.46s/it]  2%|▏         | 3/160 [00:06<05:04,  1.94s/it]  2%|▎         | 4/160 [00:06<03:22,  1.30s/it]  4%|▍         | 6/160 [00:07<01:42,  1.50it/s]  4%|▍         | 7/160 [00:08<01:59,  1.28it/s]  6%|▌         | 9/160 [00:10<02:06,  1.19it/s]  6%|▋         | 10/160 [00:10<02:05,  1.20it/s]  7%|▋         | 11/160 [00:11<01:38,  1.52it/s]  8%|▊         | 13/160 [00:11<01:02,  2.36it/s] 11%|█         | 17/160 [00:11<00:29,  4.84it/s] 12%|█▏        | 19/160 [00:15<01:33,  1.50it/s] 13%|█▎        | 21/160 [00:16<01:30,  1.53it/s] 14%|█▍        | 22/160 [00:16<01:27,  1.58it/s] 14%|█▍        | 23/160 [00:16<01:13,  1.85it/s] 15%|█▌        | 24/160 [00:17<01:16,  1.77it/s] 16%|█▌        | 25/160 [00:18<01:34,  1.42it/s] 16%|█▋        | 26/160 [00:19<01:47,  1.25it/s] 17%|█▋        | 27/160 [00:19<01:22,  1.62it/s] 18%|█▊        | 28/160 [00:20<01:11,  1.84it/s] 18%|█▊        | 29/160 [00:20<00:59,  2.22it/s] 19%|█▉        | 30/160 [00:20<00:47,  2.74it/s] 20%|██        | 32/160 [00:20<00:28,  4.49it/s] 21%|██▏       | 34/160 [00:21<00:29,  4.23it/s] 22%|██▏       | 35/160 [00:21<00:36,  3.41it/s] 22%|██▎       | 36/160 [00:21<00:32,  3.86it/s] 23%|██▎       | 37/160 [00:22<00:30,  4.00it/s] 24%|██▍       | 38/160 [00:22<00:39,  3.12it/s] 24%|██▍       | 39/160 [00:24<01:24,  1.43it/s] 25%|██▌       | 40/160 [00:25<01:36,  1.24it/s] 26%|██▋       | 42/160 [00:26<01:32,  1.28it/s] 27%|██▋       | 43/160 [00:27<01:19,  1.46it/s] 28%|██▊       | 44/160 [00:27<01:13,  1.57it/s] 28%|██▊       | 45/160 [00:28<01:23,  1.38it/s] 30%|███       | 48/160 [00:28<00:41,  2.67it/s] 31%|███       | 49/160 [00:29<00:38,  2.87it/s] 31%|███▏      | 50/160 [00:29<00:33,  3.25it/s] 32%|███▏      | 51/160 [00:29<00:32,  3.35it/s] 34%|███▍      | 54/160 [00:29<00:18,  5.72it/s] 34%|███▍      | 55/160 [00:31<00:44,  2.38it/s] 35%|███▌      | 56/160 [00:33<01:26,  1.20it/s] 37%|███▋      | 59/160 [00:33<00:45,  2.22it/s] 38%|███▊      | 60/160 [00:34<00:42,  2.36it/s] 38%|███▊      | 61/160 [00:34<00:45,  2.18it/s] 39%|███▉      | 62/160 [00:37<01:45,  1.07s/it] 40%|████      | 64/160 [00:38<01:10,  1.36it/s] 41%|████▏     | 66/160 [00:38<00:46,  2.03it/s] 42%|████▏     | 67/160 [00:38<00:42,  2.17it/s] 43%|████▎     | 69/160 [00:38<00:29,  3.06it/s] 44%|████▍     | 71/160 [00:41<00:52,  1.68it/s] 45%|████▌     | 72/160 [00:41<00:55,  1.58it/s] 46%|████▌     | 73/160 [00:42<00:49,  1.77it/s] 46%|████▋     | 74/160 [00:42<00:39,  2.18it/s] 47%|████▋     | 75/160 [00:42<00:37,  2.28it/s] 48%|████▊     | 76/160 [00:43<00:38,  2.21it/s] 48%|████▊     | 77/160 [00:43<00:38,  2.14it/s] 49%|████▉     | 78/160 [00:45<01:00,  1.35it/s] 49%|████▉     | 79/160 [00:46<01:19,  1.01it/s] 51%|█████     | 81/160 [00:47<00:49,  1.59it/s] 51%|█████▏    | 82/160 [00:47<00:41,  1.88it/s] 52%|█████▎    | 84/160 [00:47<00:28,  2.70it/s] 53%|█████▎    | 85/160 [00:47<00:26,  2.83it/s] 56%|█████▌    | 89/160 [00:48<00:19,  3.70it/s] 56%|█████▋    | 90/160 [00:50<00:31,  2.20it/s] 57%|█████▋    | 91/160 [00:51<00:41,  1.67it/s] 57%|█████▊    | 92/160 [00:51<00:39,  1.71it/s] 58%|█████▊    | 93/160 [00:52<00:38,  1.74it/s] 59%|█████▉    | 94/160 [00:53<00:44,  1.47it/s] 59%|█████▉    | 95/160 [00:54<00:57,  1.12it/s] 60%|██████    | 96/160 [00:55<00:55,  1.16it/s] 61%|██████▏   | 98/160 [00:56<00:35,  1.75it/s] 62%|██████▏   | 99/160 [00:56<00:31,  1.96it/s] 62%|██████▎   | 100/160 [00:56<00:25,  2.37it/s] 63%|██████▎   | 101/160 [00:56<00:24,  2.36it/s] 65%|██████▌   | 104/160 [00:57<00:14,  3.96it/s] 66%|██████▌   | 105/160 [00:58<00:27,  2.01it/s] 66%|██████▋   | 106/160 [00:59<00:27,  1.98it/s] 67%|██████▋   | 107/160 [00:59<00:22,  2.40it/s] 68%|██████▊   | 108/160 [00:59<00:22,  2.31it/s] 68%|██████▊   | 109/160 [01:01<00:44,  1.14it/s] 69%|██████▉   | 110/160 [01:02<00:38,  1.32it/s] 69%|██████▉   | 111/160 [01:04<00:56,  1.15s/it] 70%|███████   | 112/160 [01:04<00:41,  1.16it/s] 71%|███████   | 113/160 [01:04<00:32,  1.45it/s] 71%|███████▏  | 114/160 [01:05<00:24,  1.91it/s] 72%|███████▏  | 115/160 [01:05<00:18,  2.37it/s] 72%|███████▎  | 116/160 [01:05<00:15,  2.79it/s] 73%|███████▎  | 117/160 [01:05<00:16,  2.64it/s] 74%|███████▍  | 119/160 [01:05<00:09,  4.35it/s] 75%|███████▌  | 120/160 [01:06<00:14,  2.74it/s] 76%|███████▌  | 121/160 [01:08<00:23,  1.67it/s] 76%|███████▋  | 122/160 [01:08<00:20,  1.83it/s] 77%|███████▋  | 123/160 [01:11<00:48,  1.32s/it] 78%|███████▊  | 124/160 [01:11<00:36,  1.00s/it] 78%|███████▊  | 125/160 [01:13<00:39,  1.13s/it] 79%|███████▉  | 126/160 [01:13<00:28,  1.20it/s] 79%|███████▉  | 127/160 [01:13<00:21,  1.56it/s] 80%|████████  | 128/160 [01:13<00:16,  1.97it/s] 81%|████████  | 129/160 [01:14<00:13,  2.37it/s] 82%|████████▏ | 131/160 [01:14<00:08,  3.54it/s] 82%|████████▎ | 132/160 [01:14<00:09,  2.98it/s] 83%|████████▎ | 133/160 [01:14<00:07,  3.43it/s] 84%|████████▍ | 134/160 [01:17<00:22,  1.18it/s] 84%|████████▍ | 135/160 [01:18<00:23,  1.09it/s] 85%|████████▌ | 136/160 [01:20<00:27,  1.16s/it] 86%|████████▌ | 137/160 [01:20<00:24,  1.06s/it] 86%|████████▋ | 138/160 [01:22<00:24,  1.10s/it] 87%|████████▋ | 139/160 [01:22<00:19,  1.07it/s] 88%|████████▊ | 140/160 [01:22<00:14,  1.37it/s] 88%|████████▊ | 141/160 [01:23<00:11,  1.71it/s] 89%|████████▉ | 142/160 [01:23<00:10,  1.73it/s] 89%|████████▉ | 143/160 [01:23<00:07,  2.25it/s] 90%|█████████ | 144/160 [01:24<00:05,  2.88it/s] 91%|█████████ | 145/160 [01:25<00:11,  1.35it/s] 91%|█████████▏| 146/160 [01:30<00:27,  1.95s/it] 92%|█████████▏| 147/160 [01:32<00:24,  1.87s/it] 92%|█████████▎| 148/160 [01:32<00:16,  1.37s/it] 93%|█████████▎| 149/160 [01:32<00:11,  1.04s/it] 94%|█████████▍| 150/160 [01:32<00:07,  1.29it/s] 94%|█████████▍| 151/160 [01:33<00:06,  1.36it/s] 95%|█████████▌| 152/160 [01:35<00:10,  1.28s/it] 96%|█████████▌| 153/160 [01:41<00:17,  2.46s/it] 96%|█████████▋| 154/160 [01:41<00:10,  1.76s/it] 98%|█████████▊| 156/160 [01:41<00:04,  1.01s/it] 98%|█████████▊| 157/160 [01:42<00:02,  1.14it/s] 99%|█████████▉| 158/160 [01:49<00:05,  2.68s/it] 99%|█████████▉| 159/160 [01:49<00:01,  1.99s/it]100%|██████████| 160/160 [01:50<00:00,  1.53s/it]100%|██████████| 160/160 [01:50<00:00,  1.45it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  110.33    
+Total input tokens:                      8000000   
+Total generated tokens:                  160       
+Request throughput (req/s):              1.45      
+Output token throughput (tok/s):         1.45      
+Peak output token throughput (tok/s):    8.00      
+Peak concurrent requests:                160.00    
+Total Token throughput (tok/s):          72511.23  
+---------------Time to First Token----------------
+Mean TTFT (ms):                          47526.87  
+Median TTFT (ms):                        46135.90  
+P99 TTFT (ms):                           109035.11 
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+[2025-12-01 10:15:29] Prefill-Only test completed for input_len=50000
+[2025-12-01 10:15:31] ==========================================
+[2025-12-01 10:15:31] Running Decode-Only Test
+[2025-12-01 10:15:31] Input Length: 50000, Seed: 50045
+[2025-12-01 10:15:31] ==========================================
+/opt/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 12-01 10:15:34 [__init__.py:216] Automatically detected platform cuda.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fb3045ec220>, seed=50045, num_prompts=160, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, custom_output_len=256, custom_skip_chat_template=False, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=50000, random_output_len=10, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 0}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', endpoint_type=None, base_url='http://localhost:30805', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='/models/Qwen3-30B-A3B-Instruct-2507-FP8', tokenizer=None, use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=True, save_detailed=True, append_result=True, metadata=['type=decode-only,input_len=50000,output_len=10'], result_dir=None, result_filename='/benchmark_results/pd-only-gds/benchmark_result.json', ignore_eos=False, percentile_metrics='ttft,tpot,itl', metric_percentiles='99', goodput=None, request_id_prefix='benchmark-serving', top_p=None, top_k=None, min_p=None, temperature=None, tokenizer_mode='auto', served_model_name='Qwen3-30B-A3B-Instruct-2507-FP8', lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600)
+INFO 12-01 10:15:39 [datasets.py:507] Sampling input_len from [50000, 50000] and output_len from [10, 10]
+Starting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:09 remaining |          | 00:02 elapsed, 657:56:26 remaining
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:01<02:53,  1.09s/it]  1%|▏         | 2/160 [00:01<01:32,  1.71it/s]  2%|▏         | 3/160 [00:03<03:39,  1.40s/it]  4%|▍         | 7/160 [00:04<01:19,  1.93it/s]  8%|▊         | 12/160 [00:05<00:51,  2.88it/s]  8%|▊         | 13/160 [00:05<00:46,  3.15it/s] 12%|█▎        | 20/160 [00:06<00:26,  5.27it/s] 19%|█▉        | 30/160 [00:06<00:12, 10.76it/s] 21%|██▏       | 34/160 [00:06<00:09, 12.99it/s] 32%|███▏      | 51/160 [00:07<00:06, 17.51it/s] 35%|███▌      | 56/160 [00:07<00:05, 19.70it/s] 44%|████▍     | 70/160 [00:07<00:02, 30.69it/s] 49%|████▉     | 78/160 [00:07<00:02, 28.83it/s] 52%|█████▏    | 83/160 [00:08<00:02, 27.54it/s] 55%|█████▌    | 88/160 [00:08<00:02, 24.24it/s] 61%|██████▏   | 98/160 [00:09<00:03, 18.64it/s] 63%|██████▎   | 101/160 [00:09<00:03, 16.72it/s] 68%|██████▊   | 109/160 [00:10<00:03, 14.73it/s] 76%|███████▌  | 121/160 [00:11<00:03, 10.52it/s] 79%|███████▉  | 126/160 [00:12<00:03,  8.95it/s] 80%|████████  | 128/160 [00:12<00:03,  8.77it/s] 84%|████████▍ | 135/160 [00:12<00:02, 12.33it/s] 86%|████████▋ | 138/160 [00:13<00:01, 13.64it/s] 92%|█████████▏| 147/160 [00:13<00:00, 13.95it/s]100%|██████████| 160/160 [00:13<00:00, 11.66it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     160       
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  13.72     
+Total input tokens:                      8000000   
+Total generated tokens:                  1555      
+Request throughput (req/s):              11.66     
+Output token throughput (tok/s):         113.31    
+Peak output token throughput (tok/s):    327.00    
+Peak concurrent requests:                160.00    
+Total Token throughput (tok/s):          583078.01 
+---------------Time to First Token----------------
+Mean TTFT (ms):                          6366.52   
+Median TTFT (ms):                        5798.71   
+P99 TTFT (ms):                           12932.00  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          196.49    
+Median TPOT (ms):                        45.98     
+P99 TPOT (ms):                           1186.86   
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           196.24    
+Median ITL (ms):                         40.12     
+P99 ITL (ms):                            3843.76   
+==================================================
+[2025-12-01 10:16:25] Decode-Only test completed for input_len=50000
+[2025-12-01 10:16:27] Completed separate tests for input_len=50000
+[2025-12-01 10:16:27] 
+[2025-12-01 10:16:27] ==========================================
+[2025-12-01 10:16:27] All PD Separate Tests Completed
+[2025-12-01 10:16:27] ==========================================
+[2025-12-01 10:16:27] ==========================================
+[2025-12-01 10:16:27] Test Results Summary
+[2025-12-01 10:16:27] ==========================================
+[2025-12-01 10:16:27] Results saved to: /benchmark_results/pd-only-gds/benchmark_result.json
+[2025-12-01 10:16:27] Result file size: 476K
+[2025-12-01 10:16:27] Total test cases: 0
+0
+[2025-12-01 10:16:27] ==========================================
+[2025-12-01 10:16:27] Total execution time: 422 seconds
+[2025-12-01 10:16:27] Test completed successfully!
